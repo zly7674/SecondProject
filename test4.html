@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+	#allmap {height: 500px;width:100%;overflow: hidden;}
+	#result {width:100%;font-size:12px;}
+	dl,dt,dd,ul,li{
+		margin:0;
+		padding:0;
+		list-style:none;
+	}
+	dt{
+		font-size:14px;
+		font-family:"微软雅黑";
+		font-weight:bold;
+		border-bottom:1px dotted #000;
+		padding:5px 0 5px 5px;
+		margin:5px 0;
+	}
+	dd{
+		padding:5px 0 0 5px;
+	}
+	li{
+		line-height:28px;
+	}
+	</style>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=SKCKIf0moTTeePacCtx924aGjwCwauZZ"></script>
+	<script type="text/javascript" src="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+	<link rel="stylesheet" href="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+	<title>廊坊地图</title>
+</head>
+<body>
+	<div id="allmap">	
+	</div>
+	<div id="result">
+<!-- 		<input type="button" value="默认样式" onclick="searchInfoWindow.open(marker);"/> -->
+		<input type="text" value="政府机关单位："  >
+		<input type="button" value="廊坊市政府" onclick="openInfoWindow5()"/>
+		<input type="button" value="廊坊市人民法院" onclick="openInfoWindow6()"/>
+		<input type="button" value="廊坊市人大常委会" onclick="openInfoWindow7()"/>
+		<input type="button" value="廊坊市市委党校" onclick="openInfoWindow8()"/></br>
+
+
+		<input type="text" value="购物中心："  >
+		<input type="button" value="新朝阳购物中心" onclick="openInfoWindow3()"/>
+		<input type="button" value="万达广场" onclick="openInfoWindow4()"/>
+		<input type="button" value="万向城" onclick="openInfoWindow10()"/>
+		<input type="button" value="明珠大厦" onclick="openInfoWindow11()"/></br>
+
+		<input type="text" value="廊坊高校："  >
+		<input type="button" value="北华航天工业学院东校区" onclick="openInfoWindow2()"/>
+		<input type="button" value="廊坊师范学院" onclick="openInfoWindow12()"/>
+		<input type="button" value="中国人民警察大学" onclick="openInfoWindow13()"/>
+		<input type="button" value="河北工业大学（廊坊校区）" onclick="openInfoWindow14()"/></br>
+
+		<input type="text" value="其他："  >
+		<input type="button" value="廊坊市教育局" onclick="openInfoWindow9()"/>
+		<input type="button" value="廊坊站" onclick="openInfoWindow1()"/>
+		<input type="button" value="廊坊市交通运输局" onclick="openInfoWindow15()"/>
+
+	</div>
+<script type="text/javascript">
+	// 百度地图API功能
+    var map = new BMap.Map('allmap');
+    var poi = new BMap.Point(116.715699,39.515526);//以坐标为中心
+    map.centerAndZoom(poi, 16);
+    map.enableScrollWheelZoom();
+	
+
+
+
+    var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '简介：廊坊市，河北省地级市，位于河北省中部偏东，北临首都北京，东交天津，南接沧州，西连保定，地处京津冀城市群核心地带、环渤海腹地。廊坊市辖两个区、两个县级市及六个县，总面积6429平方千米；2019年末，常住人口492.05万人' +
+                  '</div>';
+
+    //创建检索信息窗口对象
+    var searchInfoWindow = null;
+	searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+			title  : "廊坊",      //标题
+			width  : 290,             //宽度
+			height : 105,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_SEARCH,   //周边检索
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+				BMAPLIB_TAB_FROM_HERE //从这里出发
+			]
+		});
+    var marker = new BMap.Marker(poi); //创建marker对象
+    marker.enableDragging(); //marker可拖拽
+    marker.addEventListener("click", function(e){
+	    searchInfoWindow.open(marker);
+	})
+	
+    map.addOverlay(marker); //在地图中添加marker
+	//样式1
+	var searchInfoWindow1 = new BMapLib.SearchInfoWindow(map, "中国河北省廊坊市安次区常甫路。", {
+		title: "廊坊站", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow1() {
+		searchInfoWindow1.open(new BMap.Point(116.715699,39.515526));
+	}
+	//样式2
+	var searchInfoWindow2 = new BMapLib.SearchInfoWindow(map, "中国河北省廊坊市广阳区爱民东道133号", {
+		title: "北华航天工业学院东校区", //标题
+		panel : "pane1", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发	
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow2() {
+		searchInfoWindow2.open(new BMap.Point(116.746188,39.533059));
+	}
+	//样式3
+	var searchInfoWindow3 = new BMapLib.SearchInfoWindow(map, "中国河北省廊坊市广阳区爱民东道111号", {
+		title: "新朝阳购物中心", //标题
+		width: 290, //宽度
+		height: 40, //高度
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow3() {
+		searchInfoWindow3.open(new BMap.Point(116.731815,39.53413)); 
+	}
+	//样式4
+		var searchInfoWindow4 = new BMapLib.SearchInfoWindow(map, "中国河北省廊坊市广阳区新华路50号。", {
+			title: "万达广场", //标题
+			panel : "panel", //检索结果面板
+			enableAutoPan : true, //自动平移
+			searchTypes :[
+				BMAPLIB_TAB_FROM_HERE, //从这里出发
+				BMAPLIB_TAB_SEARCH   //周边检索
+			]
+		});
+		function openInfoWindow4() {
+			searchInfoWindow4.open(new BMap.Point(116.713597,39.527897));
+		}
+
+
+
+	//样式5
+	var searchInfoWindow5 = new BMapLib.SearchInfoWindow(map, "中国河北省廊坊市广阳区广阳道230号", {
+		title: "廊坊市政府", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow5() {
+		searchInfoWindow5.open(new BMap.Point(116.690242,39.544018));
+	}
+	
+	
+	//样式6
+	var searchInfoWindow6 = new BMapLib.SearchInfoWindow(map, "河北省廊坊市广阳区广阳道210号", {
+		title: "廊坊市人民法院", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow6() {
+		searchInfoWindow6.open(new BMap.Point(116.698035,39.544372));
+	}
+
+	//样式7
+	var searchInfoWindow7 = new BMapLib.SearchInfoWindow(map, "河北省廊坊市新世纪步行街广阳道79号", {
+		title: "廊坊市人大常委会", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow7() {
+		searchInfoWindow7.open(new BMap.Point(116.7076,39.543624));
+	}
+
+	//样式8
+	var searchInfoWindow8 = new BMapLib.SearchInfoWindow(map, "河北省廊坊市广阳区新华路169号", {
+		title: "廊坊市市委党校", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow8() {
+		searchInfoWindow8.open(new BMap.Point(116.71434,39.541434));
+	}
+
+	//样式9
+	var searchInfoWindow9 = new BMapLib.SearchInfoWindow(map, "河北省廊坊市广阳区广阳道300", {
+		title: "廊坊市教育局", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow9() {
+		searchInfoWindow9.open(new BMap.Point(116.678274,39.544906));
+	}
+
+	//样式10
+	var searchInfoWindow10 = new BMapLib.SearchInfoWindow(map, "廊坊市广阳区广阳道与裕华路交叉路口往西南约100米(万向城北侧约50米)", {
+		title: "万向城", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow10() {
+		searchInfoWindow10.open(new BMap.Point(116.690645,39.542978));
+	}
+	//样式11
+	var searchInfoWindow11 = new BMapLib.SearchInfoWindow(map, "廊坊市新华路43号", {
+		title: "明珠大厦", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow11() {
+		searchInfoWindow11.open(new BMap.Point(116.716064,39.525057));
+	}
+
+	//样式12
+	var searchInfoWindow12 = new BMapLib.SearchInfoWindow(map, "河北省廊坊市安次区爱民西道100号", {
+		title: "廊坊师范学院", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow12() {
+		searchInfoWindow12.open(new BMap.Point(116.679182,39.532873));
+	}
+	//样式13
+	var searchInfoWindow13 = new BMapLib.SearchInfoWindow(map, "河北省廊坊市安次区西昌路220号", {
+		title: "中国人民警察大学", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow13() {
+		searchInfoWindow13.open(new BMap.Point(116.669141,39.537844));
+	}
+	//样式14
+	var searchInfoWindow14 = new BMapLib.SearchInfoWindow(map, "河北省廊坊市广阳区新华路144号", {
+		title: "河北工业大学(廊坊校区)", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow14() {
+		searchInfoWindow14.open(new BMap.Point(116.714563,39.551701));
+	}
+	//样式15
+	var searchInfoWindow15 = new BMapLib.SearchInfoWindow(map, "河北省廊坊市广阳道53", {
+		title: "廊坊市交通运输局", //标题
+		panel : "panel", //检索结果面板
+		enableAutoPan : true, //自动平移
+		searchTypes :[
+			BMAPLIB_TAB_FROM_HERE, //从这里出发
+			BMAPLIB_TAB_SEARCH   //周边检索
+		]
+	});
+	function openInfoWindow15() {
+		searchInfoWindow15.open(new BMap.Point(116.715575,39.544349));
+	}
+
+
+
+
+	
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	var scaleCtrl = new BMapGL.ScaleControl();  // 添加比例尺控件
+	map.addControl(scaleCtrl);
+	var zoomCtrl = new BMapGL.ZoomControl();  // 添加比例尺控件
+	map.addControl(zoomCtrl);
+</script>
+</body>
+</html>
+

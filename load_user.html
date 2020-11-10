@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta name="zly" content="js,html,css">
+<link rel="icon" type="image/x-icon" href="lable.ico">
+<html lang="ch">
+    <style>
+    </style>
+    <script>
+        function getinfo() {
+            var x=document.forms["user"]["name"].value
+            var y=document.forms["user"]["id"].value
+            var z=document.forms["user"]["pwd"].value
+            if (x =="赵凌宇"&& y=="2018405A433"&&z=="285300"){
+                alert("用户信息检索成功，登录成功！");
+                // window.open("http://i.mooc.chaoxing.com/space/index?t=1574001995061");
+                window.open("file:///D:/web/BaiduMap/test1.html");   
+            }
+            else
+            {
+                alert("输入信息有误！");
+            }
+        } 
+       function focusNextInput(thisInput)
+        { 
+            var inputs = document.getElementsByTagName("input"); 
+            for(var i = 0;i<inputs.length;i++){ 
+                // 如果是最后一个，则焦点回到第一个 
+                if(i==(inputs.length-1)){ 
+                    inputs[0].focus();break;                 
+                }else if(thisInput == inputs[i]){ 
+                    inputs[i+1].focus(); break; 
+                } 
+            } 
+        }
+    </script>
+    <title>百度地图用户登录</title>
+    <div style="text-align: center;" >
+    <img id='jpg1' src="school.jpg" width="1000" > 
+    </div>
+    <div style="text-align: center;">
+    <hr>
+    <body>
+    <h1><img id='jpg2' src="map_lable2.jpg" width="30" >百度地图用户登录</h1>
+    <form name="user">
+    姓名: <input type="text" name="name" style="font-size:20px;" autofocus  onkeypress="if(event.keyCode==13) focusNextInput(this)" ><br>
+    学号: <input type="text" name="id" style="font-size: 20px;"  onkeypress="if(event.keyCode==13) focusNextInput(this)"><br>
+    密码: <input type="password" name="pwd" style="font-size: 20px;"onkeypress="if(event.keyCode==13) focusNextInput(this)">
+    </form> 
+    <button id="gps" style="font-size: 20px;" onclick="getinfo()">点击登录</button>
+    </body>
+    </div>
+</html>
